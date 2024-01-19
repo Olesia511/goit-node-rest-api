@@ -1,12 +1,11 @@
-import express from "express";
-import morgan from "morgan";
-import cors from "cors";
-
-import contactsRouter from "./routes/contactsRouter.js";
+const express = require("express");
+const logger = require("morgan");
+const cors = require("cors");
+const contactsRouter = require("./routes/contactsRouter");
 
 const app = express();
 
-app.use(morgan("tiny"));
+app.use(logger("tiny"));
 app.use(cors());
 app.use(express.json());
 
