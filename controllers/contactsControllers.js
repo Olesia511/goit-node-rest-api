@@ -1,8 +1,6 @@
-// const contactsService = require("../services/contactsServices.js");
-
+const { Contact } = require("../models/Contact.js");
 const HttpError = require("../helpers/HttpError.js");
 const controllersWrapper = require("../helpers/controllersWrapper.js");
-const { Contact } = require("../models/Contact.js");
 
 const getAllContacts = async (req, res) => {
   const allContacts = await Contact.find();
@@ -32,14 +30,12 @@ const createContact = async (req, res) => {
 };
 
 const updateContact = async (req, res) => {
-  console.log(`req`, req);
   const { id } = req.params;
-  console.log(`req.body`, req.body);
-  console.log(`id first`, id);
-  const contact = await Contact.findByIdAndUpdate(id, req.body);
-  console.log(`id`, id);
-  if (!contact) throw HttpError(404);
-  res.json(contact);
+  console.log(`first id`, id);
+  const updateResult = await Contact.findByIdAndUpdate(id, req.body);
+  console.log(`after updateContact`);
+  if (!updateResult) throw HttpError(404);
+  res.json(updateResult);
 };
 
 module.exports = {

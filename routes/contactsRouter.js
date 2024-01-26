@@ -25,12 +25,12 @@ contactsRouter.delete("/:id", isIdValid, deleteContact);
 
 contactsRouter.post("/", createContact);
 // contactsRouter.post("/", validateBody(createContactSchema), createContact);
-contactsRouter.patch(
-  "/:id/favorite",
-  isIdValid,
-  validateBody(favoriteContactSchema),
-  updateContact
-);
+// contactsRouter.patch(
+//   "/:id/favorite",
+//   isIdValid,
+//   validateBody(favoriteContactSchema),
+//   updateContact
+// );
 contactsRouter.put("/:id", isIdValid, updateContact);
 
 // contactsRouter.put("/:id", isIdValid, validateBody(updateContactSchema), updateContact);
