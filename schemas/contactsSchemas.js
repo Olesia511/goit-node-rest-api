@@ -18,9 +18,11 @@ const createContactSchema = Joi.object({
     .min(14)
     .max(14)
     .required(),
+
+  favorite: Joi.boolean(),
 })
   .min(3)
-  .max(3);
+  .max(4);
 
 // ==============    updateContactSchema    =========
 
@@ -34,9 +36,11 @@ const updateContactSchema = Joi.object({
     .trim()
     .min(14)
     .max(14),
+
+  favorite: Joi.boolean(),
 })
   .min(1)
-  .max(3)
+  .max(4)
   .messages({
     "object.min": "Body must have at least one field",
   });
