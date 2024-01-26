@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 const { model, Schema } = mongoose;
 const Joi = require("joi");
-// const Schema = mongoose.Schema;
-// const model = mongoose.model.bind("mongoose");
-const { errStatus, updateOptions } = require("./hooksContact");
+
+const { errStatus, updateOptions } = require("./contactsHooks");
 
 // ==============    model, Schema mongoose  =========
 

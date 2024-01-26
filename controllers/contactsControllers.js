@@ -31,9 +31,8 @@ const createContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
   const { id } = req.params;
-  console.log(`first id`, id);
+
   const updateResult = await Contact.findByIdAndUpdate(id, req.body);
-  console.log(`after updateContact`);
   if (!updateResult) throw HttpError(404);
   res.json(updateResult);
 };
