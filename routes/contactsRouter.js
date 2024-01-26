@@ -8,8 +8,8 @@ const {
 } = require("../controllers/contactsControllers.js");
 const validateBody = require("../helpers/validateBody.js");
 const {
-  // createContactSchema,
-  // updateContactSchema,
+  createContactSchema,
+  updateContactSchema,
   favoriteContactSchema,
 } = require("../models/Contact.js");
 
@@ -21,14 +21,14 @@ contactsRouter.get("/", getAllContacts);
 
 contactsRouter.get("/:id", isIdValid, getContactById);
 
-contactsRouter.delete("/:id", isIdValid, deleteContact);
+contactsRouter.post("/", validateBody(createContactSchema), createContact);
 
-contactsRouter.post("/", createContact);
-// contactsRouter.post("/", validateBody(createContactSchema), createContact);
-
-contactsRouter.put("/:id", isIdValid, updateContact);
-
-// contactsRouter.put("/:id", isIdValid, validateBody(updateContactSchema), updateContact);
+contactsRouter.put(
+  "/:id",
+  isIdValid,
+  validateBody(updateContactSchema),
+  updateContact
+);
 
 contactsRouter.patch(
   "/:id/favorite",
@@ -36,5 +36,7 @@ contactsRouter.patch(
   validateBody(favoriteContactSchema),
   updateContact
 );
+
+contactsRouter.delete("/:id", isIdValid, deleteContact);
 
 module.exports = contactsRouter;
