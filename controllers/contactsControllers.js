@@ -4,7 +4,6 @@ const controllersWrapper = require("../helpers/controllersWrapper.js");
 
 const getAllContacts = async (req, res) => {
   const allContacts = await Contact.find();
-
   res.json(allContacts);
 };
 

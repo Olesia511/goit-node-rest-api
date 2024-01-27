@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { model, Schema } = mongoose;
 const Joi = require("joi");
 
-const { errStatus, updateOptions } = require("./contactsHooks");
+const { errStatus, updateOptions, emptyObj } = require("./contactsHooks");
 
 // ==============    model, Schema mongoose  =========
 
@@ -10,11 +10,11 @@ const contactSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Set name for contact"],
+      required: true,
     },
     email: {
       type: String,
-      required: [true],
+      required: true,
     },
     phone: {
       type: String,
@@ -31,6 +31,7 @@ const contactSchema = new Schema(
 contactSchema.post("save", errStatus);
 
 contactSchema.pre("findOneAndUpdate", updateOptions);
+contactSchema.pre("findOneAndUpdate", emptyObj);
 
 contactSchema.post("findOneAndUpdate", errStatus);
 
