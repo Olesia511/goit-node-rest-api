@@ -1,4 +1,8 @@
 const express = require("express");
+const validateBody = require("../helpers/validateBody.js");
+const isIdValid = require("../helpers/validateId.js");
+const authVerification = require("../helpers/authentication.js");
+
 const {
   getAllContacts,
   getContactById,
@@ -6,16 +10,16 @@ const {
   createContact,
   updateContact,
 } = require("../controllers/contactsControllers.js");
-const validateBody = require("../helpers/validateBody.js");
+
 const {
   createContactSchema,
   updateContactSchema,
   favoriteContactSchema,
 } = require("../models/Contact.js");
 
-const isIdValid = require("../helpers/validateId.js");
-
 const contactsRouter = express.Router();
+
+contactsRouter.use(authVerification);
 
 contactsRouter.get("/", getAllContacts);
 
